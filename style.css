@@ -1,0 +1,789 @@
+/* Variables de couleurs et typographie */
+:root {
+    --primary-color: #2C3E50;
+    --secondary-color: #2980B9;
+    --accent-color: #E74C3C;
+    --light-color: #ECF0F1;
+    --dark-color: #34495E;
+    --font-family: 'Poppins', sans-serif;
+}
+
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Réinitialisation */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--light-color);
+    color: var(--primary-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Conteneur général */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Header et Navigation */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    color: var(--light-color);
+    padding: 15px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background 0.4s ease;
+}
+
+header.scrolled {
+    background: var(--primary-color);
+}
+
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+    position: relative;
+}
+
+nav ul li a {
+    color: var(--light-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: var(--accent-color);
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: var(--accent-color);
+    left: 0;
+    bottom: -4px;
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after {
+    width: 100%;
+}
+
+/* Sections générales */
+section {
+    padding: 100px 0 60px; /* L'espace en haut est prévu pour le header fixe */
+    background: var(--light-color);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animations d'apparition */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Section "Qui je suis" */
+#intro {
+    background: url('https://source.unsplash.com/1600x900/?coding,technology') center/cover no-repeat;
+    padding: 120px 20px;
+    color: var(--light-color);
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    margin-bottom: 60px;
+}
+
+#intro .container {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    border-radius: 8px;
+}
+
+#intro h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+#intro p {
+    max-width: 900px;
+    margin: auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Section Formation (reste similaire à la version précédente) */
+#about {
+    background: var(--light-color);
+    color: var(--primary-color);
+    padding: 80px 0;
+}
+
+#about h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.formation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.formation-item {
+    background: var(--primary-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.formation-item h4 {
+    color: var(--light-color);
+    margin-bottom: 10px;
+}
+
+.formation-item p {
+    color: var(--light-color);
+    font-size: 0.95rem;
+}
+
+/* Section Contact */
+#contact {
+    background: var(--secondary-color);
+    color: var(--light-color);
+    padding: 80px 0;
+}
+
+#contact h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#contact .contact-info {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+    text-align: center;
+}
+
+#contact .contact-info li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+/* Footer */
+footer {
+    background: var(--dark-color);
+    color: var(--light-color);
+    text-align: center;
+    padding: 15px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .formation {
+        grid-template-columns: 1fr;
+    }
+    header .container {
+        flex-direction: column;
+    }
+    nav ul {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+    nav ul li {
+        margin: 10px 0;
+    }
+    #intro p {
+        font-size: 1rem;
+    }
+}
+
+/* ----------------------- */
+/* Styles pour la page Projets */
+/* ----------------------- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.project-item {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.project-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.project-info {
+    padding: 20px;
+}
+
+.project-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.project-info p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--secondary-color);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: var(--accent-color);
+}
+
+/* ================================ */
+/* Styles pour la page Compétences  */
+/* ================================ */
+#skills {
+    background: var(--light-color);
+    padding: 100px 0;
+}
+
+#skills h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Grille commune pour les listes */
+.skills-list,
+.qualities-list,
+.languages-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0;
+    margin-bottom: 50px;
+}
+
+/* Style pour chaque élément de la liste */
+.skills-list li,
+.qualities-list li,
+.languages-list li {
+    background: var(--secondary-color);
+    color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+    transition: transform 0.3s ease, background 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Hover effect */
+.skills-list li:hover,
+.qualities-list li:hover,
+.languages-list li:hover {
+    transform: scale(1.05);
+    background: var(--accent-color);
+}
+
+/* Responsive ajustement */
+@media (max-width: 768px) {
+    #skills h2 {
+        font-size: 1.8rem;
+    }
+}
+
+/* ================================ */
+/* CSS spécifique à la page d'accueil (index) */
+/* ================================ */
+body#index {
+    /* On hérite des variables et styles globaux déjà définis */
+}
+
+body#index section h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+body#index section h2::after {
+    content: '';
+    width: 80px;
+    height: 4px;
+    background: var(--secondary-color);
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* Encadrement et fond des conteneurs de section (sauf #intro) */
+body#index section:not(#intro) .container {
+    background: var(--light-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    margin-bottom: 20px;
+}
+body#index section:not(#intro) .container:hover {
+    transform: scale(1.02);
+}
+
+/* Traitement particulier pour la section Intro */
+body#index #intro {
+    padding: 120px 20px;
+}
+body#index #intro .container {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--light-color);
+    border-radius: 8px;
+    padding: 40px;
+}
+
+/* Section Formation (About) : Encadrement et hover sur les articles */
+body#index #about .formation-item {
+    background: var(--primary-color);
+    color: var(--light-color);
+    padding: 20px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+body#index #about .formation-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Section Contact : style des items de contact */
+#contact {
+    background-color: var(--secondary-color);
+    color: var(--light-color);
+    padding: 80px 0;
+}
+
+#contact .container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--light-color);
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+#contact h2 {
+    color: cornflowerblue;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#contact p {
+    color: black;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: justify;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+#contact .contact-info {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+#contact .contact-info li {
+    background: var(--dark-color);
+    color: var(--light-color);
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+    text-align: center;
+    font-size: 1rem;
+}
+
+#contact .contact-info li a {
+    color: var(--light-color);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+#contact .contact-info li a:hover {
+    color: var(--light-color);
+}
+
+#contact .contact-info li:hover {
+    background: var(--accent-color);
+}
+
+/* Liens cohérents sur la page */
+body#index a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+body#index a:hover {
+    color: var(--accent-color);
+}
+
+/* Espacements généraux des sections de l'accueil */
+body#index section {
+    padding: 80px 0;
+}
+
+/* Header et Footer restent harmonieux */
+body#index header {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+body#index footer {
+    border-top: 3px solid var(--primary-color);
+    padding: 15px 0;
+    text-align: center;
+}
+
+/* ================================ */
+/* Styles spécifiques pour la page Projet 1 */
+body#project1 {
+    font-family: var(--font-family);
+    background: var(--light-color);
+    color: var(--primary-color);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+body#project1 .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+body#project1 header,
+body#project1 footer {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    color: var(--light-color);
+    padding: 15px 0;
+    text-align: center;
+}
+
+body#project1 footer {
+    font-size: 0.9rem;
+}
+
+body#project1 h1,
+body#project1 h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+body#project1 h2 {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+body#project1 section {
+    margin-bottom: 40px;
+}
+
+/* Description du projet */
+body#project1 .project-description {
+    background: #fff;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Consigne du projet */
+body#project1 .project-instructions {
+    background: #f9f9f9;
+    border: 2px dashed var(--secondary-color);
+    border-radius: 8px;
+    padding: 20px;
+    max-height: 500px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 0.95rem;
+}
+
+/* Lien de téléchargement */
+body#project1 .download-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--primary-color);
+    color: var(--light-color);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+body#project1 .download-link:hover {
+    background: var(--accent-color);
+}
+
+/* Espace pour les images */
+body#project1 .project-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+body#project1 .project-images .placeholder {
+    width: 300px;
+    height: 200px;
+    background: #ddd;
+    border: 2px dashed #aaa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    font-style: italic;
+}
+
+/* Ajout de marge pour éviter la superposition du header */
+body#project1 main.container {
+    margin-top: 80px; /* Ajustez la valeur si nécessaire */
+}
+
+/* ================================ */
+/* Styles spécifiques pour la page Projet 1 */
+/* ================================ */
+
+body#project1 main.container {
+    margin-top: 80px; /* Espace pour le header fixe */
+}
+
+/* Section d'introduction */
+body#project1 .project-intro {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    background: #fff;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+}
+body#project1 .project-intro .intro-content {
+    flex: 1 1 400px;
+}
+body#project1 .project-intro .intro-content h2 {
+    margin-bottom: 15px;
+    text-align: left;
+}
+body#project1 .project-intro .intro-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+body#project1 .project-intro .intro-image {
+    flex: 1 1 300px;
+    text-align: center;
+}
+body#project1 .project-intro .intro-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Section de description détaillée */
+body#project1 .project-description {
+    background: #fff;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+}
+body#project1 .project-description h2 {
+    margin-bottom: 20px;
+}
+body#project1 .project-description p {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+body#project1 .project-description .description-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+body#project1 .project-description .description-images .image-item {
+    flex: 1 1 calc(50% - 20px);
+    text-align: center;
+}
+body#project1 .project-description .description-images .image-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+}
+body#project1 .project-description .description-images .image-item p {
+    font-size: 0.9rem;
+    color: var(--dark-color);
+}
+
+/* Section des consignes et détails techniques */
+body#project1 .project-instructions {
+    background: #f9f9f9;
+    border: 2px dashed var(--secondary-color);
+    border-radius: 8px;
+    padding: 20px;
+    max-height: 500px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 0.95rem;
+    margin-bottom: 40px;
+}
+body#project1 .project-instructions h2 {
+    margin-bottom: 20px;
+}
+body#project1 .project-instructions p,
+body#project1 .project-instructions ul {
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+body#project1 .project-instructions ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+body#project1 .project-instructions .instruction-image {
+    text-align: center;
+    margin-top: 20px;
+}
+body#project1 .project-instructions .instruction-image img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Section de téléchargement */
+body#project1 .project-download {
+    text-align: center;
+    background: #fff;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+}
+body#project1 .project-download h2 {
+    margin-bottom: 20px;
+}
+body#project1 .project-download p {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+body#project1 .project-download .download-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background: var(--primary-color);
+    color: var(--light-color);
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+body#project1 .project-download .download-link:hover {
+    background: var(--accent-color);
+}
+
+/* Adaptation pour les petits écrans */
+@media (max-width: 768px) {
+    body#project1 .project-intro {
+        flex-direction: column;
+    }
+    body#project1 .project-description .description-images {
+        flex-direction: column;
+    }
+}
+body#project1 main.container {
+    margin-top: 120px; /* Ajustez cette valeur selon la hauteur de votre header */
+}.projects-grid .project-item img {
+     width: 100%;
+     height: 250px; /* Ajustez cette valeur selon la hauteur souhaitée */
+     object-fit: cover; /* Permet de recadrer l'image pour qu'elle remplisse le cadre sans déformation */
+ }
+
